@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rfu-qT-J8h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,123 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIK-JV-B03">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="My Map" id="UKD-iF-Umo">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="lMq-OJ-yAa"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Find Me" id="k3h-tx-30Q"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FoS-o9-C7X">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FoS-o9-C7X" firstAttribute="leading" secondItem="yIK-JV-B03" secondAttribute="leading" id="1sR-T9-nRr"/>
+                            <constraint firstItem="FoS-o9-C7X" firstAttribute="trailing" secondItem="yIK-JV-B03" secondAttribute="trailing" id="Js8-lU-AQi"/>
+                            <constraint firstItem="yIK-JV-B03" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="XNn-te-Bpc">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
+                            <constraint firstItem="FoS-o9-C7X" firstAttribute="top" secondItem="yIK-JV-B03" secondAttribute="bottom" id="ceF-9M-BdD"/>
+                            <constraint firstAttribute="trailing" secondItem="yIK-JV-B03" secondAttribute="trailing" id="hQ3-2w-4j7"/>
+                            <constraint firstItem="yIK-JV-B03" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pcv-Vm-678"/>
+                            <constraint firstItem="FoS-o9-C7X" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="t1F-d5-jap"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="yIK-JV-B03"/>
+                                <exclude reference="FoS-o9-C7X"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="XNn-te-Bpc"/>
+                                <exclude reference="hQ3-2w-4j7"/>
+                                <exclude reference="pcv-Vm-678"/>
+                                <exclude reference="1sR-T9-nRr"/>
+                                <exclude reference="Js8-lU-AQi"/>
+                                <exclude reference="ceF-9M-BdD"/>
+                                <exclude reference="t1F-d5-jap"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="yIK-JV-B03"/>
+                                <include reference="FoS-o9-C7X"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="XNn-te-Bpc"/>
+                                <include reference="hQ3-2w-4j7"/>
+                                <include reference="pcv-Vm-678"/>
+                                <include reference="1sR-T9-nRr"/>
+                                <include reference="Js8-lU-AQi"/>
+                                <include reference="ceF-9M-BdD"/>
+                                <include reference="t1F-d5-jap"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="myMap" destination="FoS-o9-C7X" id="8FJ-CA-3xU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="15" y="339"/>
+        </scene>
+        <!--My Places-->
+        <scene sceneID="0yh-a3-tj3">
+            <objects>
+                <tableViewController id="zJQ-oR-6If" customClass="TableViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AyE-0J-vwv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wWD-tQ-W9f">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wWD-tQ-W9f" id="sPp-wV-qT9">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zJQ-oR-6If" id="NQA-TA-0GB"/>
+                            <outlet property="delegate" destination="zJQ-oR-6If" id="m5N-mI-zoI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Places" id="Gju-PV-jp0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Du-kH-jhE"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="findPlace" id="8WJ-0G-q8y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wbs-Qo-HrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1150.5" y="339"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TbP-CR-DCA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rfu-qT-J8h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ur9-sl-Grn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zJQ-oR-6If" kind="relationship" relationship="rootViewController" id="f58-lN-Bt8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mR1-NT-50J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="547.5" y="339"/>
         </scene>
     </scenes>
 </document>
