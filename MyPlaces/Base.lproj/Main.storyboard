@@ -13,15 +13,23 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIK-JV-B03">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="My Map" id="UKD-iF-Umo">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="lMq-OJ-yAa"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Find Me" id="k3h-tx-30Q"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="lMq-OJ-yAa">
+                                            <connections>
+                                                <segue destination="rfu-qT-J8h" kind="show" identifier="back" id="6Cf-6G-ecA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Find Me" id="k3h-tx-30Q">
+                                            <connections>
+                                                <action selector="findMe:" destination="vXZ-lx-hvc" id="a4K-tM-PRh"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -79,13 +87,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15" y="339"/>
+            <point key="canvasLocation" x="-72" y="339"/>
         </scene>
         <!--My Places-->
         <scene sceneID="0yh-a3-tj3">
             <objects>
                 <tableViewController id="zJQ-oR-6If" customClass="TableViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AyE-0J-vwv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

@@ -40,13 +40,19 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        // ---------------- Keep the navigation bar controler after second back but hit
+        self.navigationController?.navigationBarHidden = true
+
+    }
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Moving to segue with identifier, and getting rid of navigation bar in map ?>
         // What to do when row selected
         activePlace = indexPath.row
         
         self.performSegueWithIdentifier("findPlace", sender: indexPath)
-        self.navigationController?.navigationBarHidden = true
     }
 
     // MARK: - Table view data source

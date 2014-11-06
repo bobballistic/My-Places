@@ -36,5 +36,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location to put you on the map</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need to know your location constantly </string>
 </dict>
 </plist>
