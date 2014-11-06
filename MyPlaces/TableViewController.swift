@@ -14,6 +14,14 @@ var places = [Dictionary<String,String>()]
 
 class TableViewController: UITableViewController {
     
+    
+    @IBAction func addLocation(sender: AnyObject) {
+        
+        self.performSegueWithIdentifier("addLocation", sender: UIBarButtonItem.self)
+        places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
+
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +31,11 @@ class TableViewController: UITableViewController {
             places.removeAtIndex(0)
         }
         
+        if places.count == 0 {
+        
         places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
-        places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
+        
+        }
 
         
         
@@ -33,6 +44,13 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // --------------- checking if user wants to add a new locatio, if so set the var active place to -1? ----------
+        if segue.identifier == "addLocation" {
+            activePlace = -1
+        }
     }
 
     override func didReceiveMemoryWarning() {

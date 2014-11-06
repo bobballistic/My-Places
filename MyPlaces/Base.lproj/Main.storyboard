@@ -111,7 +111,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Places" id="Gju-PV-jp0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Du-kH-jhE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9Du-kH-jhE">
+                            <connections>
+                                <action selector="addLocation:" destination="zJQ-oR-6If" id="d11-G0-6fq"/>
+                                <segue destination="vXZ-lx-hvc" kind="show" identifier="addLocation" id="qHa-mz-Ws5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -120,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbs-Qo-HrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1150.5" y="339"/>
+            <point key="canvasLocation" x="1147.5" y="315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TbP-CR-DCA">
@@ -143,4 +148,7 @@
             <point key="canvasLocation" x="547.5" y="339"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qHa-mz-Ws5"/>
+    </inferredMetricsTieBreakers>
 </document>
