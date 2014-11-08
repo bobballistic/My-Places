@@ -106,9 +106,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    // MARK: - LongPress
     func action(gestureRecognizer:UIGestureRecognizer) {
-        
+    // MARK: - Display Unknown in allert if no name of location
+        if title == nil {
+            let alertController = UIAlertController(title: "New Place Added", message:
+                "Unknown Address", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+
+        } else {
+        let alertController = UIAlertController(title: "New Place Added", message:
+            "Address:  \(title)", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+
+        }
         if gestureRecognizer.state == UIGestureRecognizerState.Began { // the gestRec does on touch and after so we check is it has just began" in order
                                                                         // to not get duplicates in array on gesture has finnished
         
@@ -184,16 +197,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
                 //MARK:- SavingToMemory
                 
+               
+                
                 NSUserDefaults.standardUserDefaults().setObject(persistentPlaces, forKey: "name")
                 NSUserDefaults.standardUserDefaults().synchronize() 
                 println(NSUserDefaults.standardUserDefaults().objectForKey("name"))
                 //MARK
         
-                let alertController = UIAlertController(title: "New Place Added", message:
-                    "Address:  \(title)", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
-                
-                self.presentViewController(alertController, animated: true, completion: nil)
+             
             
             }
             

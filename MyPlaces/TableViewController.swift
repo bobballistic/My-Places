@@ -27,15 +27,15 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+        /*
         if places.count == 1 {
-            // We remove the empty cell at the begining of the table, not shure why it's showing ?!?!
-            // UPDATE syntax was off, var places = [Dictionary<String,String>()] should be var places = [Dictionary<String,String>]()
+             //We remove the empty cell at the begining of the table, not shure why it's showing ?!?!
+             //UPDATE syntax was off, var places = [Dictionary<String,String>()] should be var places = [Dictionary<String,String>]()
 
 
-           places.removeAtIndex(0)
+          places.removeAtIndex(0)
         }
-        
+        */
         if places.count == 0 {
         
         places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
@@ -114,8 +114,14 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         // Configure the cell...
+        // MARK:  SOLUTIUON TO FILL TABLE WITH "UNKNOWN" IF PLACE IS " "
+        if places[indexPath.row]["name"] == " " {
+            
+            places[indexPath.row]["name"] = "Unknown"
+    
+        }
         cell.textLabel.text = places[indexPath.row]["name"]
-        return cell
+            return cell
        
     }
     // MARK: - SwipeToDelete
