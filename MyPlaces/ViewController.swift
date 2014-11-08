@@ -77,6 +77,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // import lat and long from places at index activePlace, convert from sting to double
         let lat = NSString(string: places[activePlace]["latitude"]!).doubleValue
         let lon = NSString(string: places[activePlace]["longitude"]!).doubleValue
+            
     
         
         let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
@@ -174,10 +175,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 var latToSendToDict = newCoord.latitude
                 var lonToSendToDict = newCoord.longitude
                 
-            
-                
+                var persistentPlaces = places
                 places.append(["name":title, "lat":"\(newCoord.latitude)", "lon":"\(newCoord.longitude)"])
-                println(places)
+
+                //MARK:- SavingToMemory
+                
+                NSUserDefaults.standardUserDefaults().setObject(persistentPlaces, forKey: "name")
+                NSUserDefaults.standardUserDefaults().synchronize() // Added synchronize as suggested by LAMMERT WESTERHOFF
+                println(NSUserDefaults.standardUserDefaults().objectForKey("name"))
+                //MARK
+                
                 
             }
             

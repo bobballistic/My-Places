@@ -9,7 +9,7 @@
 import UIKit
 
 var activePlace:Int = 0
-var places = [Dictionary<String,String>()]
+var places = [Dictionary<String,String>]()
 
 
 class TableViewController: UITableViewController {
@@ -28,13 +28,32 @@ class TableViewController: UITableViewController {
         
         if places.count == 1 {
             // We remove the empty cell at the begining of the table, not shure why it's showing ?!?!
-            places.removeAtIndex(0)
+            // UPDATE syntax was off, var places = [Dictionary<String,String>()] should be var places = [Dictionary<String,String>]()
+
+
+           places.removeAtIndex(0)
         }
         
         if places.count == 0 {
         
         places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
-        
+            
+            // MARK: - DisplayingNSUSerToTable?
+            //Populating the table when the view loads
+            
+            if var storedPlaces: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("name") {  //We are checking if the app was used before (if there is anything in the NSUserdefaults)
+                
+                places = []     // emptying the myToDo array (In case there are items in)
+                
+                for var i = 0; i<storedPlaces?.count; ++i {               // Looping trough all the items in the array
+                    var stringStored = storedPlaces as [Dictionary<String, String>]    // Create new var stringStored (type string) from the storedToDoItems (object)
+                    places.append(stringStored[i] as Dictionary)           // Adding items at index [i] to array
+                    
+                }
+                
+                
+            }
+           
         }
 
         
@@ -95,6 +114,7 @@ class TableViewController: UITableViewController {
         // Configure the cell...
         cell.textLabel.text = places[indexPath.row]["name"]
         return cell
+       
     }
    
 
