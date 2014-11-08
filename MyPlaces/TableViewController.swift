@@ -14,7 +14,8 @@ var places = [Dictionary<String,String>]()
 
 class TableViewController: UITableViewController {
     
-    
+    @IBOutlet var taskTable:UITableView!
+    // MARK: - MoveToSegue
     @IBAction func addLocation(sender: AnyObject) {
         
         self.performSegueWithIdentifier("addLocation", sender: UIBarButtonItem.self)
@@ -38,8 +39,8 @@ class TableViewController: UITableViewController {
         
         places.append(["name":"Taj Mahal", "latitude":"27.175115", "longitude":"78.042144"])
             
-            // MARK: - DisplayingNSUSerToTable?
-            //Populating the table when the view loads
+            // MARK: - DisplayingNSUSerToTable? Populating the table when the view loads
+            //
             
             if var storedPlaces: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("name") {  //We are checking if the app was used before (if there is anything in the NSUserdefaults)
                 
@@ -107,16 +108,32 @@ class TableViewController: UITableViewController {
     }
 
     
-    
+    // MARK: - Populating the table
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        // Populating the table
         // Configure the cell...
         cell.textLabel.text = places[indexPath.row]["name"]
         return cell
        
     }
-   
+    // MARK: - SwipeToDelete
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            ///tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+           
+            places.removeAtIndex(indexPath.row)
+            let fixedPlaces = places
+            NSUserDefaults.standardUserDefaults().setObject(fixedPlaces, forKey: "name")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            taskTable.reloadData()
+            //taskTable.reloadData() // refresh the table data
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+
 
     /*
     // Override to support conditional editing of the table view.

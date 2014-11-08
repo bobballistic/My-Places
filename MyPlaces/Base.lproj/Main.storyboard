@@ -120,6 +120,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="taskTable" destination="AyE-0J-vwv" id="dDr-AV-nGi"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="findPlace" id="8WJ-0G-q8y"/>
                     </connections>
                 </tableViewController>

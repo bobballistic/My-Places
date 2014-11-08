@@ -181,7 +181,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 //MARK:- SavingToMemory
                 
                 NSUserDefaults.standardUserDefaults().setObject(persistentPlaces, forKey: "name")
-                NSUserDefaults.standardUserDefaults().synchronize() // Added synchronize as suggested by LAMMERT WESTERHOFF
+                NSUserDefaults.standardUserDefaults().synchronize() 
                 println(NSUserDefaults.standardUserDefaults().objectForKey("name"))
                 //MARK
                 
