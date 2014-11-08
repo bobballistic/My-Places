@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Foundation
 
 
 
@@ -111,7 +112,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if gestureRecognizer.state == UIGestureRecognizerState.Began { // the gestRec does on touch and after so we check is it has just began" in order
                                                                         // to not get duplicates in array on gesture has finnished
         
-            var touchPoint = gestureRecognizer.locationInView(self.myMap)
+        var touchPoint = gestureRecognizer.locationInView(self.myMap)
         var newCoord:CLLocationCoordinate2D = myMap.convertPoint(touchPoint, toCoordinateFromView: self.myMap)
         
         var newAnotation = MKPointAnnotation()
@@ -156,18 +157,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                
                 
                 var title = "\(subThoroughfare) \(thoroughfare)"
-                if title == " " {
+                var subtitle = "\(subLocality) \(subAdministrativeArea)"
+                
+                var newAnotation = MKPointAnnotation()
+                newAnotation.coordinate = newCoord
+                
+                newAnotation.title = title
+                
+                newAnotation.subtitle = subtitle
+                if title == "" {
                     
                     var date = NSDate()
                     newAnotation.title = "Added \(date)"
                     
                 }
-                var subtitle = "\(subLocality) \(subAdministrativeArea)"
-                
-                var newAnotation = MKPointAnnotation()
-                newAnotation.coordinate = newCoord
-                newAnotation.title = title
-                newAnotation.subtitle = subtitle
+
                 self.myMap.addAnnotation(newAnotation)
                 
                 // ADD TO ARRAY
@@ -184,8 +188,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 NSUserDefaults.standardUserDefaults().synchronize() 
                 println(NSUserDefaults.standardUserDefaults().objectForKey("name"))
                 //MARK
+        
+                let alertController = UIAlertController(title: "New Place Added", message:
+                    "Address:  \(title)", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
                 
-                
+                self.presentViewController(alertController, animated: true, completion: nil)
+            
             }
             
             

@@ -26,6 +26,7 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         if places.count == 1 {
             // We remove the empty cell at the begining of the table, not shure why it's showing ?!?!
