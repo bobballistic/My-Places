@@ -71,14 +71,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         println(places[activePlace]["latitude"])
         println(activePlace)
-
+            
+       
         //------------------ Map and preset location --------------------
         
         let theSpan = MKCoordinateSpanMake(0.01, 0.01)
         // import lat and long from places at index activePlace, convert from sting to double
         let lat = NSString(string: places[activePlace]["latitude"]!).doubleValue
         let lon = NSString(string: places[activePlace]["longitude"]!).doubleValue
-            
+         
+          
+         
     
         
         let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
@@ -128,6 +131,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var touchPoint = gestureRecognizer.locationInView(self.myMap)
         var newCoord:CLLocationCoordinate2D = myMap.convertPoint(touchPoint, toCoordinateFromView: self.myMap)
         
+       
+            
+        
+            
         var newAnotation = MKPointAnnotation()
         newAnotation.coordinate = newCoord
         newAnotation.title = "New Location"
@@ -193,8 +200,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 var lonToSendToDict = newCoord.longitude
                 
                 var persistentPlaces = places
-                places.append(["name":title, "lat":"\(newCoord.latitude)", "lon":"\(newCoord.longitude)"])
+                places.append(["name":title, "latitude":"\(newCoord.latitude)", "longitude":"\(newCoord.longitude)"])
 
+                println(places)
                 //MARK:- SavingToMemory
                 
                
