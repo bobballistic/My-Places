@@ -26,6 +26,9 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.rowHeight = 70
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "map"))
     
         /*
         if places.count == 1 {
@@ -108,7 +111,17 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         // Configure the cell...
+        // MARK: - Custom Cells
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = UIColor.clearColor()
+        } else {
+        cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
+        cell.textLabel.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+        cell.detailTextLabel?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+        }
+        cell.textLabel.textColor = UIColor.whiteColor()
         // MARK:  SOLUTIUON TO FILL TABLE WITH "UNKNOWN" IF PLACE IS " "
+   
         if places[indexPath.row]["name"] == " " {
             
             places[indexPath.row]["name"] = "Unknown"
