@@ -77,8 +77,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let theSpan = MKCoordinateSpanMake(0.01, 0.01)
         // import lat and long from places at index activePlace, convert from sting to double
-        let lat = NSString(string: places[activePlace]["lat"]!).doubleValue
-        let lon = NSString(string: places[activePlace]["lon"]!).doubleValue
+        let lat = NSString(string: places[activePlace]["latitude"]!).doubleValue
+        let lon = NSString(string: places[activePlace]["longitude"]!).doubleValue
          
           
          
